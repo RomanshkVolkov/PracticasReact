@@ -6,9 +6,25 @@ export const FormularioComponent = () => {
     const getFormData = e => {
         e.preventDefault()
         const data = new FormData(e.target)
-        const value = Object.fromEntries(data.entries())
+        let value = Object.fromEntries(data.entries())
+        value = {
+            ...value,
+            enviar: e.target.enviar.value
+        }
         console.log(value)
         setUser(value)
+    }
+
+    const changeData = e => {
+        let inputName = e.target.name;
+
+        setUser(prevStatus => {
+            return {
+                ...prevStatus,
+                [inputName]: e.target.value
+            }
+        });
+        console.log(user)
     }
     return (
         <div>
@@ -19,14 +35,14 @@ export const FormularioComponent = () => {
                 </div>
             )}
             <form onSubmit={getFormData}>
-                <input type="text" placeholder='Nombre' name='name' />
-                <input type="text" placeholder='Apellido' name='lastname' />
-                <select name="genero" id="">
+                <input type="text" placeholder='Nombre' name='name' onChange={changeData} />
+                <input type="text" placeholder='Apellido' name='lastname' onChange={changeData} />
+                <select name="genero" id="" onChange={changeData} >
                     <option value="hombre">Hombre</option>
                     <option value="mujer">Mujer</option>
                 </select>
-                <textarea name="biografia" id="" cols="30" rows="10" placeholder='Biografia' ></textarea>
-                <input type="submit" value='Enviar' />
+                <textarea name="biografia" id="" cols="30" rows="10" placeholder='Biografia' onChange={changeData} ></textarea>
+                <input type="submit" value='Enviar' name='enviar' />
             </form>
         </div>
     )
