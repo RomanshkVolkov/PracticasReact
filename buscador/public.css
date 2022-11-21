@@ -1,0 +1,25 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    grid-gap: 60px;
+    font-family: sans-serif;
+    background-color: beige;
+}
+
+.box {}
+
+.results {}
+
+.box input {
+    font-size: 2rem;
+
+}

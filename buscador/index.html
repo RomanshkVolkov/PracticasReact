@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./public.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="display">
+      <div>
+        <textarea name="text" id="" cols="30" rows="10"></textarea>
+      </div>
+      <div class="box">
+        <div class="container-1">
+          <span class="icon"><i class="fa fa-search"></i></span>
+          <input
+            type="search"
+            id="search"
+            placeholder="Search..."
+            value=""
+            oninput="getSuggestions(this.value)"
+          />
+        </div>
+      </div>
+      <div class="results">
+        <ul id="result">
+          <li>
+            <i class="res1"><span></span></i>
+          </li>
+          <br />
+          <li>
+            <i class="res2"><span></span></i>
+          </li>
+          <br />
+          <li>
+            <i class="res3"><span></span></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script>
+    async function getSuggestions(search) {
+      console.log("Buscando sugerencias");
+      const suggestions = await fetch("./Suggestions.json")
+        .then((response) => {
+          return response.json();
+        })
+        .then((jsondata) => {
+          return jsondata;
+        });
+      console.log(suggestions[0]);
+
+      let SearchArray = String(search).replace("de ", "").split(" ");
+      console.log(SearchArray.indexOf(""));
+      SearchArray.splice(SearchArray.indexOf(""), 1);
+      console.log(SearchArray);
+      const validate = (item) => {
+        const results = []; // boolean[]
+
+        let status = false;
+
+        const descripcion = item.descripcion.toLowerCase();
+
+        SearchArray.some((word) => {
+          if (descripcion.includes(word.toLowerCase())) results.push(true);
+          else results.push(false);
+        });
+
+        for (let index = 0; index < results.length; index++) {
+          if (results[index] === false) {
+            status = false; // si detecta que un elemento no coincidio entonces no existe el producto para todas las
+            // palabras
+            break;
+          } else {
+            status = true;
+          }
+        }
+
+        return status;
+      };
+      // buscar por clave
+      let filterSuggest = suggestions.filter((item) =>
+        SearchArray.some((el) => item?.clave?.includes(el))
+      );
+
+      if (filterSuggest.length === 0)
+        //buscar por fabricante
+        filterSuggest = suggestions.filter((item) =>
+          SearchArray.some((el) => item?.fabricante?.includes(el))
+        );
+
+      if (filterSuggest.length === 0)
+        filterSuggest = suggestions.filter((item) =>
+          item.descripcion
+            .toLowerCase()
+            .replace(" ", "")
+            .slice(0, 15)
+            .includes(String(search).toLowerCase())
+        );
+
+      if (filterSuggest.length === 0)
+        filterSuggest = suggestions.filter((item) => validate(item));
+
+      const finalSuggest = filterSuggest.slice(0, 3);
+      console.log(finalSuggest);
+      let res1 = document.querySelector(".res1 > span");
+      res1.innerHTML = finalSuggest[0].descripcion;
+      let res2 = document.querySelector(".res2 > span");
+      res2.innerHTML = finalSuggest[1].descripcion;
+      let res3 = document.querySelector(".res3 > span");
+      res3.innerHTML = finalSuggest[2].descripcion;
+    }
+  </script>
+</html>
