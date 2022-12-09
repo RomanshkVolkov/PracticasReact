@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
-export const Portafolio = () => {
-    return (
-        <div>Portafolio</div>
-    )
+export function Portafolio() {
+  return <div>Portafolio</div>;
 }

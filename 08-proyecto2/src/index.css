@@ -5,6 +5,14 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
 body {
   text-align: center;
 }
@@ -12,11 +20,10 @@ body {
 .layout {
   width: 85%;
   margin: 0 auto;
-
 }
 
 .header {
-  padding: 2rem;
+  padding: 1rem;
   display: grid;
   grid-template-columns: 15rem auto;
   justify-content: center;
@@ -29,25 +36,20 @@ article {
 }
 
 .header .logo {
-  border: white 1px solid;
   justify-content: center;
   align-items: center;
-
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
-
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 body {
   background: #272727;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: #f6f4e6;
 }
 
 .navMenu {
   margin-left: auto;
-  border: white 1px solid;
   display: grid;
   grid-template-columns: 10%;
 }
@@ -117,6 +119,20 @@ body {
   opacity: 1;
 } */
 
+.active {
+  color: #fddb3a !important;
+}
+
+.div-space {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.div-space hr {
+  width: 80%;
+  margin: 0 auto;
+}
 .navMenu ul {
   list-style: none;
   display: grid;
@@ -127,8 +143,6 @@ body {
   margin-top: 5rem;
 }
 
-
-
 .marco {
   border-radius: 100px 100px 100px 100px;
   /* ancho - tipo - color
@@ -138,7 +152,7 @@ body {
   /* distancia entre la img y el borde */
   margin: 5px;
   /* distancia entre el borde y el contenido */
-  width: 200px;
+  width: 120px;
   /* el ancho de la img */
   filter: brightness(70%);
 }
@@ -146,17 +160,104 @@ body {
 main {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  border: #19191a 1px solid;
-  min-height: 25rem;
+  min-height: max-content;
   margin: 0 10rem;
+  margin-bottom: 1rem;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.about {
+  position: inherit;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.about p {
+  margin-bottom: 1rem;
+  text-align: left;
+  color: white;
+}
+
+.about p a {
+  font-weight: 600;
+  font-style: italic;
+  color: #f6f4e6;
+  text-decoration: none;
+}
+
+.about p a:hover {
+  color: #fddb3a;
+}
+
+.home > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-div-img {
+  width: 35rem;
+  max-height: 25rem;
+  margin-right: 2rem;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scroll-snap-stop: always;
+}
+.contacto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.contacto p {
+  color: #f6f4e6;
+}
+.contacto div {
+  display: flex;
+}
+
+.contacto div > div {
+  margin-right: 1rem;
+}
+.contacto div > div a {
+  color: #f6f4e6;
+  text-decoration: none;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-block;
+  padding: 0.5em 1em;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  background: #19191a;
+  border-radius: 50px 0 50px 0;
+}
+.contacto div > div a:hover {
+  font-size: 1.25rem;
+  color: #fddb3a;
+  border-radius: 10px 0 50px 50px;
+}
+.contacto div > div a:hover > p {
+  color: #d3bd4e;
+  max-width: max-content * 0.1;
+}
+
+.imagen1 {
+  width: 100%;
+  height: 100%;
+  background-image: url(https://upqroo.edu.mx/wp-content/uploads/2022/05/DSC_0132-1536x1024.jpg);
+  background-size: 100%;
 }
 
 footer {
-  border: white 1px solid;
   display: grid;
   grid-template-columns: auto;
   text-align: space-between;
   justify-content: center;
-  margin: 3rem 10rem;
+  margin-bottom: 1rem;
 }
